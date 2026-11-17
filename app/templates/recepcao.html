@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block cls %}wide{% endblock %}{% block c %}
+<h1>Painel da recepção</h1><p class="mut">Fila do dia — {{ hoje[8:10] }}/{{ hoje[5:7] }}/{{ hoje[:4] }}</p>
+<div class="kpis"><div class="kpi"><b>{{ resumo['agendado'] }}</b>Agendados</div><div class="kpi"><b>{{ resumo['confirmado'] }}</b>Confirmados</div><div class="kpi"><b>{{ resumo['em_fila'] }}</b>Na fila</div><div class="kpi"><b>{{ resumo['atendido'] }}</b>Atendidos</div><div class="kpi"><b>{{ resumo['faltou'] }}</b>Faltas</div></div>
+<a class="btn peq" style="margin-top:14px" href="{{ url_for('assistido') }}">+ Agendamento assistido</a>
+<div class="card" style="overflow-x:auto"><table><thead><tr><th>Hora</th><th>Cidadão</th><th>Atendimento</th><th>UBS</th><th>Status</th><th>Ações</th></tr></thead><tbody>
+{% for i in itens %}<tr><td>{{ i['hora'] }}</td><td>{{ nomes[i['cidadao_id']] }}{{ ' ·assistido' if i['assistido'] }}</td><td>{{ i['atendimento'] }}</td><td>{{ i['ubs'] }}</td><td><span class="pill {{ i['status'] }}">{{ i['status'].replace('_',' ') }}</span></td>
+<td>{% if i['status'] in ('agendado','confirmado','em_fila') %}<form method="post" style="display:inline"><input type="hidden" name="id" value="{{ i['id'] }}">
+<button class="btn peq" name="acao" value="chamar">Chamar</button><button class="btn peq sec" name="acao" value="faltou">Faltou</button><button class="btn peq perigo" name="acao" value="cancelar">Cancelar</button></form>{% endif %}</td></tr>
+{% else %}<tr><td colspan="6" class="mut">Nenhum agendamento para hoje.</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}

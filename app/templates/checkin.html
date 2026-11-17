@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block c %}
+<h1>Check-in</h1><p class="mut">No dia da consulta, informe o código do comprovante.</p>
+<form method="post" class="card"><label for="codigo">Código</label><input id="codigo" name="codigo" placeholder="UBS-XXXXXXXX" autocomplete="off" required>
+<button class="btn">Entrar na fila</button></form>
+{% endblock %}

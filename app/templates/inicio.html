@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block c %}
+<h1>Olá, {{ u['nome'].split()[0] }}</h1><p class="mut">O que você precisa hoje?</p>
+{% if prox %}
+<div class="card dest"><span class="pill">Próxima consulta</span>
+<h2 style="margin-top:8px">{{ prox['atendimento'] }}</h2>
+<div>{{ prox['data'][8:10] }}/{{ prox['data'][5:7] }} às {{ prox['hora'] }}</div><div class="mut">{{ prox['ubs'] }} · {{ prox['bairro'] }}</div>
+<a class="btn sec" href="{{ url_for('comprovante', codigo=prox['codigo']) }}">Detalhes e QR Code</a>
+{% if prox['status']=='agendado' %}<form method="post" action="{{ url_for('confirmar', codigo=prox['codigo']) }}"><button class="btn" name="acao" value="confirmar">Confirmar presença</button></form>{% endif %}
+</div>{% endif %}
+<div class="card">
+<a class="item" href="{{ url_for('agendar') }}"><span class="num">1</span><span><b>Agendar consulta</b><br><span class="mut">Escolha UBS, dia e horário</span></span></a>
+<a class="item" href="{{ url_for('checkin') }}"><span class="num">2</span><span><b>Fazer check-in</b><br><span class="mut">No dia da consulta, com o código</span></span></a>
+<a class="item" href="{{ url_for('fila') }}"><span class="num">3</span><span><b>Minha fila</b><br><span class="mut">Acompanhe sua posição</span></span></a></div>
+{% for e in espera %}<div class="card"><span class="pill">Lista de espera</span><div>{{ e['atendimento'] }} · {{ e['ubs'] }} · {{ e['data'][8:10] }}/{{ e['data'][5:7] }}</div></div>{% endfor %}
+{% endblock %}

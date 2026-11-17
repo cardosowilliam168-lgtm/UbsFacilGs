@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="defs_asis" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://ubsfacil.example/bpmn">
+<collaboration id="col_asis"><participant id="par_asis" name="UBS — Agendamento de consulta" processRef="proc_asis"/></collaboration>
+<process id="proc_asis" name="AS-IS — Agendamento de consulta na UBS (situação atual, sem a solução)" isExecutable="false">
+<laneSet id="ls_asis">
+<lane id="lane_asis_0" name="Cidadão"><flowNodeRef>s1</flowNodeRef><flowNodeRef>a1</flowNodeRef><flowNodeRef>a3</flowNodeRef><flowNodeRef>e1</flowNodeRef><flowNodeRef>a5</flowNodeRef><flowNodeRef>g2</flowNodeRef><flowNodeRef>e2</flowNodeRef></lane>
+<lane id="lane_asis_1" name="Recepção da UBS"><flowNodeRef>a2</flowNodeRef><flowNodeRef>g1</flowNodeRef><flowNodeRef>a4</flowNodeRef></lane>
+<lane id="lane_asis_2" name="Equipe de Saúde"><flowNodeRef>a6</flowNodeRef><flowNodeRef>e3</flowNodeRef></lane>
+</laneSet>
+<startEvent id="s1" name="Precisa de consulta"><outgoing>f0</outgoing></startEvent>
+<userTask id="a1" name="Ir à UBS de madrugada e entrar na fila"><incoming>f0</incoming><outgoing>f1</outgoing></userTask>
+<userTask id="a2" name="Atender no balcão e consultar as vagas do dia"><incoming>f1</incoming><outgoing>f2</outgoing></userTask>
+<exclusiveGateway id="g1" name="Há vaga?"><incoming>f2</incoming><outgoing>f3</outgoing><outgoing>f5</outgoing></exclusiveGateway>
+<userTask id="a3" name="Voltar para casa sem consulta"><incoming>f3</incoming><outgoing>f4</outgoing></userTask>
+<endEvent id="e1" name="Sem atendimento"><incoming>f4</incoming></endEvent>
+<userTask id="a4" name="Registrar o agendamento na ficha de papel"><incoming>f5</incoming><outgoing>f6</outgoing><dataOutputAssociation id="doa_a4"><targetRef>d1_ref</targetRef></dataOutputAssociation></userTask>
+<userTask id="a5" name="Aguardar a data agendada (sem lembrete)"><incoming>f6</incoming><outgoing>f7</outgoing></userTask>
+<exclusiveGateway id="g2" name="Compareceu?"><incoming>f7</incoming><outgoing>f8</outgoing><outgoing>f9</outgoing></exclusiveGateway>
+<endEvent id="e2" name="Falta registrada (vaga ociosa)"><incoming>f8</incoming></endEvent>
+<userTask id="a6" name="Realizar o atendimento"><incoming>f9</incoming><outgoing>f10</outgoing></userTask>
+<endEvent id="e3" name="Consulta realizada"><incoming>f10</incoming></endEvent>
+<sequenceFlow id="f0" sourceRef="s1" targetRef="a1"/>
+<sequenceFlow id="f1" sourceRef="a1" targetRef="a2"/>
+<sequenceFlow id="f2" sourceRef="a2" targetRef="g1"/>
+<sequenceFlow id="f3" sourceRef="g1" targetRef="a3" name="Não"/>
+<sequenceFlow id="f4" sourceRef="a3" targetRef="e1"/>
+<sequenceFlow id="f5" sourceRef="g1" targetRef="a4" name="Sim"/>
+<sequenceFlow id="f6" sourceRef="a4" targetRef="a5"/>
+<sequenceFlow id="f7" sourceRef="a5" targetRef="g2"/>
+<sequenceFlow id="f8" sourceRef="g2" targetRef="e2" name="Não"/>
+<sequenceFlow id="f9" sourceRef="g2" targetRef="a6" name="Sim"/>
+<sequenceFlow id="f10" sourceRef="a6" targetRef="e3"/>
+<dataObject id="d1" name="Ficha de agendamento (papel)"/>
+<dataObjectReference id="d1_ref" name="Ficha de agendamento (papel)" dataObjectRef="d1"/>
+</process>
+<bpmndi:BPMNDiagram id="dia_asis"><bpmndi:BPMNPlane id="plane_asis" bpmnElement="col_asis">
+<bpmndi:BPMNShape id="sh_par_asis" bpmnElement="par_asis" isHorizontal="true"><dc:Bounds x="8" y="30" width="1140" height="495"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_asis_0" bpmnElement="lane_asis_0" isHorizontal="true"><dc:Bounds x="34" y="30" width="1114" height="165"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_asis_1" bpmnElement="lane_asis_1" isHorizontal="true"><dc:Bounds x="34" y="195" width="1114" height="165"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_lane_asis_2" bpmnElement="lane_asis_2" isHorizontal="true"><dc:Bounds x="34" y="360" width="1114" height="165"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_s1" bpmnElement="s1"><dc:Bounds x="96.0" y="97.5" width="30" height="30"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_a1" bpmnElement="a1"><dc:Bounds x="181.0" y="80.5" width="100" height="64"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_a2" bpmnElement="a2"><dc:Bounds x="321.0" y="245.5" width="100" height="64"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_g1" bpmnElement="g1" isMarkerVisible="true"><dc:Bounds x="474.0" y="255.5" width="44" height="44"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_a3" bpmnElement="a3"><dc:Bounds x="446.0" y="80.5" width="100" height="64"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_e1" bpmnElement="e1"><dc:Bounds x="611.0" y="97.5" width="30" height="30"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_a4" bpmnElement="a4"><dc:Bounds x="576.0" y="245.5" width="100" height="64"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_a5" bpmnElement="a5"><dc:Bounds x="721.0" y="80.5" width="100" height="64"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_g2" bpmnElement="g2" isMarkerVisible="true"><dc:Bounds x="884.0" y="90.5" width="44" height="44"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_e2" bpmnElement="e2"><dc:Bounds x="1021.0" y="97.5" width="30" height="30"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_a6" bpmnElement="a6"><dc:Bounds x="961.0" y="410.5" width="100" height="64"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_e3" bpmnElement="e3"><dc:Bounds x="1101.0" y="427.5" width="30" height="30"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="sh_d1" bpmnElement="d1_ref"><dc:Bounds x="612.0" y="315.5" width="28" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNEdge id="ed_f0" bpmnElement="f0"><di:waypoint x="126.0" y="112.5"/><di:waypoint x="181.0" y="112.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f1" bpmnElement="f1"><di:waypoint x="281.0" y="112.5"/><di:waypoint x="299.0" y="112.5"/><di:waypoint x="299.0" y="277.5"/><di:waypoint x="321.0" y="277.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f2" bpmnElement="f2"><di:waypoint x="421.0" y="277.5"/><di:waypoint x="474.0" y="277.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f3" bpmnElement="f3"><di:waypoint x="496" y="255.5"/><di:waypoint x="496" y="144.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f4" bpmnElement="f4"><di:waypoint x="546.0" y="112.5"/><di:waypoint x="611.0" y="112.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f5" bpmnElement="f5"><di:waypoint x="518.0" y="277.5"/><di:waypoint x="576.0" y="277.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f6" bpmnElement="f6"><di:waypoint x="676.0" y="277.5"/><di:waypoint x="771" y="277.5"/><di:waypoint x="771" y="144.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f7" bpmnElement="f7"><di:waypoint x="821.0" y="112.5"/><di:waypoint x="884.0" y="112.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f8" bpmnElement="f8"><di:waypoint x="928.0" y="112.5"/><di:waypoint x="1021.0" y="112.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f9" bpmnElement="f9"><di:waypoint x="906" y="134.5"/><di:waypoint x="906" y="442.5"/><di:waypoint x="961.0" y="442.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_f10" bpmnElement="f10"><di:waypoint x="1061.0" y="442.5"/><di:waypoint x="1101.0" y="442.5"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="ed_doa_a4" bpmnElement="doa_a4"><di:waypoint x="626" y="309.5"/><di:waypoint x="626" y="315.5"/></bpmndi:BPMNEdge>
+</bpmndi:BPMNPlane></bpmndi:BPMNDiagram></definitions>

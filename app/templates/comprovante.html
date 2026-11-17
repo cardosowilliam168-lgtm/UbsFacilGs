@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block c %}
+<h1>Consulta agendada</h1>
+<div class="card qr"><img src="{{ url_for('qr', codigo=ag['codigo']) }}" alt="QR Code {{ ag['codigo'] }}">
+<div style="font-size:22px;font-weight:800;letter-spacing:.06em">{{ ag['codigo'] }}</div><div class="mut">Apresente na recepção ou use no check-in</div></div>
+<div class="card"><div><b>{{ ag['atendimento'] }}</b> <span class="pill {{ ag['status'] }}">{{ ag['status'].replace('_',' ') }}</span></div>
+<div>{{ ag['data'][8:10] }}/{{ ag['data'][5:7] }}/{{ ag['data'][:4] }} às {{ ag['hora'] }}</div><div class="mut">{{ ag['ubs'] }} · {{ ag['bairro'] }}</div>
+<p class="mut">Você receberá um lembrete 24 h antes para confirmar ou cancelar.</p></div>
+{% if ag['status'] in ('agendado','confirmado') and ag['cidadao_id']==u['id'] %}
+<form method="post" action="{{ url_for('confirmar', codigo=ag['codigo']) }}">
+{% if ag['status']=='agendado' %}<button class="btn" name="acao" value="confirmar">Confirmar presença</button>{% endif %}
+<button class="btn perigo" name="acao" value="cancelar">Cancelar consulta</button></form>{% endif %}
+<a class="btn sec" href="{{ url_for('inicio') }}">Voltar ao início</a>
+{% endblock %}

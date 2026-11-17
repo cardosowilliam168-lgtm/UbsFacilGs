@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block t %}UBS Fácil{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+<header class="top"><a class="brand" href="/">UBS Fácil</a>
+{% if u %}<span><span class="mut" style="color:#cfe0f5">{{ u['nome'] }}</span> · <a href="{{ url_for('sair') }}">Sair</a></span>{% endif %}</header>
+<main class="{% block cls %}{% endblock %}">
+{% with m = get_flashed_messages(with_categories=true) %}{% for c,t in m %}<div class="msg {{ c }}" role="status">{{ t }}</div>{% endfor %}{% endwith %}
+{% block c %}{% endblock %}
+</main>
+{% if u and u['perfil']=='cidadao' %}<nav class="bar"><a href="{{ url_for('inicio') }}">Início</a><a href="{{ url_for('agendar') }}">Agendar</a><a href="{{ url_for('checkin') }}">Check-in</a><a href="{{ url_for('fila') }}">Fila</a></nav>{% endif %}
+</body></html>

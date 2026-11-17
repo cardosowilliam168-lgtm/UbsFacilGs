@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block c %}
+<h1>Agendamento assistido</h1><p class="mut">Para quem não usa smartphone.</p>
+{% include "_seletor.html" %}
+{% if livres is not none %}<div class="card"><h2>Dados do cidadão</h2>
+<form method="post"><input type="hidden" name="ubs" value="{{ f['ubs'] }}"><input type="hidden" name="atendimento" value="{{ f['atendimento'] }}"><input type="hidden" name="dia" value="{{ f['dia'] }}">
+<label for="nome">Nome</label><input id="nome" name="nome" value="{{ f.get('nome','') }}"><label for="cpf">CPF</label><input id="cpf" name="cpf" inputmode="numeric" value="{{ f.get('cpf','') }}">
+<label>Horário livre</label>{% if livres %}<div class="horas">{% for v in livres %}<button class="hora" name="vaga" value="{{ v['id'] }}">{{ v['hora'] }}</button>{% endfor %}</div>{% else %}<p class="mut">Sem horários neste dia.</p>{% endif %}</form></div>{% endif %}
+<a class="btn sec" href="{{ url_for('recepcao') }}">Voltar ao painel</a>
+{% endblock %}

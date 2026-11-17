@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block t %}Entrar · UBS Fácil{% endblock %}
+{% block c %}
+<h1>{{ 'Criar conta' if novo else 'Entrar' }}</h1>
+<p class="mut">Agende sua consulta sem sair de casa.</p>
+<form method="post" class="card">
+<label for="cpf">CPF</label><input id="cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" value="{{ cpf or '' }}" required>
+{% if novo %}
+<label for="nome">Nome completo</label><input id="nome" name="nome" required>
+<label for="sus">Cartão SUS (opcional)</label><input id="sus" name="sus" inputmode="numeric">
+<label style="font-weight:400"><input type="checkbox" name="lgpd" style="width:auto"> Aceito o uso dos meus dados para agendamento, conforme a LGPD.</label>
+{% endif %}
+<button class="btn" type="submit">{{ 'Criar conta e entrar' if novo else 'Entrar' }}</button>
+{% if not novo %}<a class="btn sec" href="{{ url_for('login', novo=1) }}">Primeiro acesso</a>{% endif %}
+</form>
+<p class="mut">Demonstração: CPF 529.982.247-25 (Maria, cidadã) · 390.533.447-05 (recepção).</p>
+{% endblock %}

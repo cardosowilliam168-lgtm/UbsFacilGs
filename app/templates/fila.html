@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block c %}
+<h1>Sua fila hoje</h1>
+<div class="card dest"><b>Check-in realizado</b> às {{ ag['checkin_em'][11:16] }}<div class="mut">{{ ag['atendimento'] }} — {{ ag['hora'] }} · {{ ag['ubs'] }}</div></div>
+<div class="card"><div class="mut" style="text-align:center">Sua posição</div><div class="pos">{{ pos }}º</div>
+<p style="text-align:center" class="mut">Tempo estimado: cerca de {{ tempo }} min</p>
+<p style="text-align:center">Avisamos por notificação quando for sua vez.</p></div>
+<form method="post" action="{{ url_for('confirmar', codigo=ag['codigo']) }}"><button class="btn perigo" name="acao" value="cancelar">Preciso sair da fila</button></form>
+<a class="btn sec" href="{{ url_for('fila') }}">Atualizar</a>
+{% endblock %}

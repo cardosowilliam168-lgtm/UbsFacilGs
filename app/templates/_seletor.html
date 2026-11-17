@@ -1,0 +1,5 @@
+<form method="get" class="card">
+<label for="ubs">Unidade (UBS)</label><select id="ubs" name="ubs">{% for x in ubs %}<option value="{{ x['id'] }}" {{ 'selected' if f.get('ubs')==x['id']|string }}>{{ x['nome'] }} — {{ x['bairro'] }}</option>{% endfor %}</select>
+<label for="atendimento">Atendimento</label><select id="atendimento" name="atendimento">{% for x in ats %}<option value="{{ x['id'] }}" {{ 'selected' if f.get('atendimento')==x['id']|string }}>{{ x['nome'] }}</option>{% endfor %}</select>
+<label for="dia">Dia</label><select id="dia" name="dia">{% for d in dias %}<option value="{{ d }}" {{ 'selected' if f.get('dia')==d }}>{{ d[8:10] }}/{{ d[5:7] }}{{ ' (hoje)' if loop.first }}</option>{% endfor %}</select>
+<button class="btn sec" type="submit">Ver horários</button></form>
