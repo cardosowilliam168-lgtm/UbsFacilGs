@@ -197,7 +197,7 @@ Mais em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 <div align="center">
 
-| William Philip Oliveira Cardoso | Tomas Marques | João Siroky |
+| William Cardoso | Tomas Marques | João Siroky |
 |:---:|:---:|:---:|
 | RM 567157 | RM 567296 | RM 556076 |
 
