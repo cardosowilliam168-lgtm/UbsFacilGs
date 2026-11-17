@@ -4,15 +4,9 @@
 
 <br>
 
-![ODS 3](https://img.shields.io/badge/ODS%203-Sa%C3%BAde%20e%20Bem--Estar-4C9F38?style=for-the-badge)
-![ODS 10](https://img.shields.io/badge/ODS%2010-Redu%C3%A7%C3%A3o%20das%20Desigualdades-DD1367?style=for-the-badge)
-![Scrum](https://img.shields.io/badge/Processo-Scrum-00529B?style=for-the-badge)
-![BPMN](https://img.shields.io/badge/Modelagem-BPMN%202.0-6A1B9A?style=for-the-badge)
-![Licença](https://img.shields.io/badge/Licen%C3%A7a-MIT-lightgrey?style=for-the-badge)
-
 **Marque a consulta pelo celular. Acompanhe a fila de casa. Sem madrugada, sem papel, sem vaga perdida.**
 
-[O problema](#-o-problema) · [A solução](#-a-solução) · [MVP](#️-mvp-funcional) · [Protótipo](#-protótipo) · [Processos BPMN](#-processos-bpmn) · [Storyboard](#-storyboard) · [Backlog](#-backlog-e-sprints) · [Equipe](#-equipe)
+[O problema](#problema) · [A solução](#solucao) · [MVP](#mvp) · [Protótipo](#prototipo) · [Processos BPMN](#bpmn) · [Storyboard](#storyboard) · [Backlog](#backlog) · [Equipe](#equipe)
 
 </div>
 
@@ -31,6 +25,8 @@ O **UBS Fácil** é uma proposta de agendamento digital e fila virtual para Unid
 | **ODS secundário** | ODS 10, meta 10.2 (inclusão de todos, inclusive quem não usa smartphone) |
 | **Persona** | Maria, 62 anos, moradora da Vila Mariana |
 
+<a id="problema"></a>
+
 ## 😟 O problema
 
 Em muitas UBS, conseguir uma consulta ainda exige ir à unidade de madrugada para disputar um número limitado de vagas. O agendamento é feito em papel, sem comprovante e sem lembrete.
@@ -38,6 +34,8 @@ Em muitas UBS, conseguir uma consulta ainda exige ir à unidade de madrugada par
 - Quem não consegue chegar cedo fica sem atendimento.
 - Quem agenda e esquece de ir deixa a vaga vazia, e ninguém é chamado no lugar.
 - A unidade não enxerga a demanda real nem a fila do dia.
+
+<a id="solucao"></a>
 
 ## 💡 A solução
 
@@ -64,6 +62,8 @@ flowchart LR
     G --> C
 ```
 
+<a id="mvp"></a>
+
 ## ▶️ MVP funcional
 
 Além da documentação, o repositório traz um **MVP que roda**: aplicativo em **Flask**, banco **SQLite**, QR Code, fila virtual e painel da recepção, com **10 testes automatizados** no GitHub Actions.
@@ -83,6 +83,8 @@ python app.py        # http://127.0.0.1:5000
 </div>
 
 Mais detalhes, usuários de demonstração e mapa de requisitos em [`app/README.md`](app/README.md).
+
+<a id="prototipo"></a>
 
 ## 📱 Protótipo
 
@@ -104,6 +106,8 @@ Seis telas, da entrada do cidadão ao painel da recepção.
 <sub>Painel web da recepção</sub>
 </div>
 
+<a id="bpmn"></a>
+
 ## 🔄 Processos BPMN
 
 O processo de agendamento hoje (**AS-IS**) e o processo proposto (**TO-BE**), modelados em BPMN 2.0. Os arquivos `.bpmn` ficam em [`bizagi/`](bizagi) e abrem no Bizagi Modeler.
@@ -116,11 +120,15 @@ O processo de agendamento hoje (**AS-IS**) e o processo proposto (**TO-BE**), mo
 
 <img src="diagramas/to-be.png" alt="BPMN TO-BE" width="100%">
 
+<a id="storyboard"></a>
+
 ## 🎞️ Storyboard
 
 A jornada da Maria em oito quadros, do problema ao atendimento.
 
 <img src="storyboard/storyboard-jornada-do-cidadao.png" alt="Storyboard da jornada do cidadão" width="100%">
+
+<a id="backlog"></a>
 
 ## 🗂️ Backlog e Sprints
 
@@ -183,13 +191,16 @@ UbsFacilGs/
 
 Mais em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
+<a id="equipe"></a>
+
 ## 👥 Equipe
 
 <div align="center">
 
-| William Cardoso | Tomas Marques | João Siroky |
+| William Philip Oliveira Cardoso | Tomas Marques | João Siroky |
 |:---:|:---:|:---:|
 | RM 567157 | RM 567296 | RM 556076 |
+| [@cardosowilliam168-lgtm](https://github.com/cardosowilliam168-lgtm) | | |
 
 FIAP · Sistemas de Informação · 2SI · 2026
 
