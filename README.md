@@ -200,7 +200,7 @@ Mais em [`CONTRIBUTING.md`](CONTRIBUTING.md).
 | William Philip Oliveira Cardoso | Tomas Marques | João Siroky |
 |:---:|:---:|:---:|
 | RM 567157 | RM 567296 | RM 556076 |
-| [@cardosowilliam168-lgtm](https://github.com/cardosowilliam168-lgtm) | | |
+
 
 FIAP · Sistemas de Informação · 2SI · 2026
 
