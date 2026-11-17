@@ -1,0 +1,15 @@
+# Sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporários
+*.tmp
+*.bak
+~$*
+*.log
+__pycache__/
+app/ubsfacil.db
+__pycache__/
+.pytest_cache/
